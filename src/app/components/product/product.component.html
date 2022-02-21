@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product List</h2>
+    </div>
+
+    <div class="col-6 text-right">
+        <a [routerLink]="['/add-product']" class="btn btn-outline-primary">Add New Product</a>
+    </div>
+</div>
+<form>
+    <div class="row">
+        <div class="col-3">
+          <label class="control-label">Low Cost</label>
+            <input type="number" class="form-control" placeholder="Low cost" name="lowAmount" (input)="filter()" [(ngModel)]="filters.lowCost" />
+        </div>
+        <div class="col-3">
+          <label class="control-label">Top Cost</label>
+            <input type="number" class="form-control" placeholder="Top cost" name="largeAmount" (input)="filter()" [(ngModel)]="filters.topCost" />
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+<br />
+<table class="table" id="myTable">
+    <thead>
+        <tr class="table-info">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Color</th>
+            <th>Is available ?</th>
+            <th>Product type</th>
+            <th>Tag name</th>
+            <th>Action</th>
+          <th>  <a routerLink="/added-products" class="nav-link text-dark">
+            <i class="fas fa-shopping-cart"></i>
+          </a></th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product.productId}}</td>
+        <td>{{product.productName}}</td>
+        <td>{{product.productPrice}}</td>
+        <td>{{product.productColor}}</td>
+        <td>{{product.available}}</td>
+        <td>{{product.productType.productType}}</td>
+        <td>{{product.tagName.tagName}}</td>
+        <td>
+          <a routerLink="/edit-product/{{product.productId}}"  class="btn btn-outline-primary">Update</a>
+          <button (click) = "deleteProductById(product.productId)" class="btn btn-outline-danger">Delete</button>
+          <button (click)="addToCart(product.productId)" class="btn btn-outline-success">Add To Cart</button>
+        </td>
+      </tr>
+    </tbody>
+</table>

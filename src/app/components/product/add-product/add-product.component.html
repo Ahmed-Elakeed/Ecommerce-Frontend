@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="col-6">
+      <h2 class="text-info">Product</h2>
+    </div>
+    <form (ngSubmit)="saveProduct()" style="padding: 30px">
+      <div class="text-danger"></div>
+      <div class="form-group">
+        <label class="control-label">Name</label>
+        <input class="form-control" type="text" [(ngModel)]="product.productName" name="productName" required/>
+        <span class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Price</label>
+        <input class="form-control" type="number" [(ngModel)]="product.productPrice" name="productPrice" required/>
+        <span  class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Color</label>
+        <input class="form-control" type="text" [(ngModel)]="product.productColor" name="productColor" required/>
+        <span class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Available</label><br>
+        <select class="form-control" [(ngModel)]="product.available" name="available" required>
+          <option>true</option>
+          <option>false</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Product types</label><br>
+        <select class="form-control" id="productType" [(ngModel)]="product.productType.productTypeId" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let productType of productTypes" [ngValue]="productType.productTypeId">{{productType.productType}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Tag names</label><br>
+        <select class="form-control" id="muscle" [(ngModel)]="product.tagName.tagNameId" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let tagName of tagNames" [ngValue]="tagName.tagNameId">{{tagName.tagName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-outline-primary" />
+      </div>
+    </form>
+  </div>
+</div>

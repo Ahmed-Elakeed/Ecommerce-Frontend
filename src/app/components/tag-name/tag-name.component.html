@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="row">
+  <div class="col-6">
+    <h2 class="text-info">Tag Names</h2>
+  </div>
+</div>
+<form  (ngSubmit)="saveTagName()">
+  <div class="row">
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Add Tag Name" name="tagName" [(ngModel)]="tagName.tagName" />
+    </div>
+    <div class="col-3">
+      <input type="submit" class="btn btn-outline-primary" value="Submit" />
+    </div>
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Search Tag Names"  name="keywordSearch" [(ngModel)]="filters.keyword" (input)="filter()"/>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</form>
+<br />
+<table class="table" id="myTable">
+  <thead>
+  <tr class="table-info">
+    <th>ID</th>
+    <th>Tag name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tagName of tagNames">
+    <td>{{tagName.tagNameId}}</td>
+    <td>{{tagName.tagName}}</td>
+    <td>
+      <a (click)="getTagNameById(tagName.tagNameId)"  class="btn btn-outline-primary">Update</a>
+      <button (click) = "deleteTagNameById(tagName.tagNameId)" class="btn btn-outline-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

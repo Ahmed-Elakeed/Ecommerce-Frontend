@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="row">
+  <div class="col-6">
+    <h2 class="text-info">Product List</h2>
+  </div>
+
+  <div class="col-6 text-right">
+    <a (click)="clearList()" class="btn btn-outline-danger">Clear</a>
+    <a [routerLink]="['/products']" class="btn btn-outline-success">Add New Product</a>
+  </div>
+</div>
+<br />
+<table class="table" id="myTable">
+  <thead>
+  <tr class="table-info">
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Color</th>
+    <th>Is available ?</th>
+    <th>Product type</th>
+    <th>Tag name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of addedProducts">
+    <td>{{product?.productId}}</td>
+    <td>{{product?.productName}}</td>
+    <td>{{product?.productPrice}}</td>
+    <td>{{product?.productColor}}</td>
+    <td>{{product?.available}}</td>
+    <td>{{product?.productType?.productType}}</td>
+    <td>{{product?.tagName?.tagName}}</td>
+    <td>
+      <button (click) = "deleteAddedProductById(product?.productId)" class="btn btn-outline-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
